@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { CreateUser } from 'src/app/models/response.model';
+import { Observable, Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -12,50 +11,34 @@ import { ApiService } from 'src/app/services/api.service';
 export class HomeComponent implements OnInit {
 
   data: any;
-  sub$!: Subscription;
 
-  constructor(private apiService: ApiService) {
-
-   }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-
-    this.sub$ = this.apiService.subject.subscribe((res)=>{
-      console.log(res, "res")
-    })
-
-    this.apiService.getUserList().subscribe((res) => {
+    this.apiService.getData().subscribe((res) => {
+      console.log(res, "data");
       this.data = res;
-      console.log(res, "res");
-    })
+    }, (err) => {
+      console.log(err, "error")
+    });
 
-    // this.apiService.getUserOfId(2).subscribe((res) => {
-    //   console.log(res, "2")
-    // }, (err) => {
-    //   console.log(err, "2")
-    // })
-
-    this.apiService.getUserOfId(2).subscribe({
+    this.apiService.createUser().subscribe({
       next: (res) => {
-        console.log(res, "res")
+        console.log(res, "data")
       },
-      error: (err) => {
-        console.log(err, "err")
-      }
-    })
-
-    this.apiService.createUser().subscribe((res:CreateUser)=>{
-      console.log(res, "create")
+      error: () => {
+        // alert("error");
+      },
+      complete: () => { }
     })
   }
+
   trggerSub() {
-    this.apiService.subject.next("Hi")
+
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    this.sub$?.unsubscribe();
+    // this.obs$?.unsubscribe();
   }
 
 }

@@ -8,10 +8,14 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class AboutComponent {
 
-  constructor(private apiService: ApiService) {}
+  date:any;
+  // blueBg = "btn-bg-blue"
+  // orangeBg = "btn-bg-orange"
 
-  trggerSub() {
-    this.apiService.subject.next("Hi");
+
+  constructor(private apiService: ApiService) {
+    this.date = new Date();
+    console.log(this.date, "date")
   }
 
 }

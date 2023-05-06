@@ -19,6 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'user-list',
+    canLoad: [AuthGuard],
     loadChildren: () => import('./pages/user-list/user-list.module').then(m => m.UserListModule)
   },
   {

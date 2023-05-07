@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
+import { HomeComponent } from './pages/home/home.component';
 import { DeactivateGuard } from './guards/deactivate.guard';
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   },
   {
     path: "home",
+    component: HomeComponent,
     canDeactivate: [DeactivateGuard],
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
   },
@@ -31,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule),
   }
 ];
 

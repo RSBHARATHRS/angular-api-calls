@@ -17,10 +17,10 @@ export class UserListComponent {
   }
 
   getUserList() {
-    this.data = this.apiService.getUserList();
-    // .subscribe((res) => {
-    //   this.userList = res?.data;
-    //   console.log(this.userList, "user list");
-    // })
+    this.data = this.apiService.getUserList()
+    .subscribe((res) => {
+      this.userList = res?.data;
+      console.log(this.userList, "user list");
+    })
   }
 }

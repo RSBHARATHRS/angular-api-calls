@@ -5,12 +5,14 @@ import { DeactivateGuard } from 'src/app/guards/deactivate.guard';
 import { BlogsComponent } from './blogs/blogs.component';
 import { NewsComponent } from './news/news.component';
 import { ArticlesComponent } from './articles/articles.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     // canActivateChild: [],
     // component: HomeComponent,
+    canActivateChild: [AuthGuard],
     children: [
       // {
       //   path: "",
@@ -18,10 +20,12 @@ const routes: Routes = [
       // },
       {
         path: "blogs",
+        // canActivate: [AuthGuard],
         component: BlogsComponent
       },
       {
         path: "news",
+        // canActivate: [AuthGuard],
         component: NewsComponent,
       },
       {

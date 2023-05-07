@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { DeactivateGuard } from './guards/deactivate.guard';
+import { UserFormComponent } from './pages/user-form/user-form.component';
 // import { BlogsComponent } from './pages/home/blogs/blogs.component';
 // import { NewsComponent } from './pages/home/news/news.component';
 // import { ArticlesComponent } from './pages/home/articles/articles.component';
@@ -17,7 +18,6 @@ const routes: Routes = [
   {
     path: "home",
     component: HomeComponent,
-    canDeactivate: [DeactivateGuard],
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
   },
   {
@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'user-list',
-    canLoad: [AuthGuard],
+    // canLoad: [AuthGuard],
     loadChildren: () => import('./pages/user-list/user-list.module').then(m => m.UserListModule)
   },
   {
@@ -37,6 +37,12 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule),
+  },
+  {
+    path: 'userForm',
+    // component: UserFormComponent,
+    loadChildren: () => import('./pages/user-form/user-form.module').then(m => m.UserFormModule),
+
   }
 ];
 

@@ -15,22 +15,22 @@ export class HomeComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.apiService.getData().subscribe((res) => {
-      console.log(res, "data");
-      this.data = res;
-    }, (err) => {
-      console.log(err, "error")
-    });
+    // this.apiService.getData().subscribe((res) => {
+    //   console.log(res, "data");
+    //   this.data = res;
+    // }, (err) => {
+    //   console.log(err, "error")
+    // });
 
-    this.apiService.createUser().subscribe({
-      next: (res) => {
-        console.log(res, "data")
-      },
-      error: () => {
-        // alert("error");
-      },
-      complete: () => { }
-    })
+    // this.apiService.createUser().subscribe({
+    //   next: (res) => {
+    //     console.log(res, "data")
+    //   },
+    //   error: () => {
+    //     // alert("error");
+    //   },
+    //   complete: () => { }
+    // })
   }
 
   trggerSub() {
@@ -39,6 +39,10 @@ export class HomeComponent implements OnInit {
 
   ngOnDestroy(): void {
     // this.obs$?.unsubscribe();
+  }
+
+  canExit() {
+    return true;
   }
 
 }

@@ -4,6 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { DeactivateGuard } from './guards/deactivate.guard';
+// import { BlogsComponent } from './pages/home/blogs/blogs.component';
+// import { NewsComponent } from './pages/home/news/news.component';
+// import { ArticlesComponent } from './pages/home/articles/articles.component';
 
 const routes: Routes = [
   {

@@ -1,0 +1,3 @@
+<h1>Login</h1>
+<button *ngIf="!isLogedIn" class="btn login" (click)="login()">Login</button>
+<button *ngIf="isLogedIn" class="btn logout" (click)="logout()">Log out</button>

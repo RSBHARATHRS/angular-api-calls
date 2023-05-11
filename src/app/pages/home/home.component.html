@@ -1,4 +1,12 @@
-<!-- <p>Home page</p>
-<p>{{data | json}}</p> -->
-<!-- <div [appCustom]="'orange'">Hello</div> -->
-<p>{{"data" | custopmPipe}}</p>
+<h1 class="heading">Home page</h1>
+<header>
+    <div class="nav-ctrl">
+        <a [routerLink]="['/home/blogs']" routerLinkActive="router-link-active">Blogs</a>
+        <a [routerLink]="['/home/articles']" routerLinkActive="router-link-active">articles</a>
+        <a [routerLink]="['/home/news']" routerLinkActive="router-link-active">news</a>
+    </div>
+</header>
+
+<button (click)="navigateToAdmin()">Admin</button>
+
+<router-outlet></router-outlet>

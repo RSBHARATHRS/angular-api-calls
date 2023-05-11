@@ -1,0 +1,28 @@
+// h1{
+    
+// }
+header {
+    width          : 100%;
+    // border: 1px solid red;
+    display        : flex;
+    justify-content: center;
+    // background-color: gray;
+    .nav-ctrl {
+        width          : 100%;
+        height         : 100%;
+        display        : flex;
+        justify-content: center;
+
+        a {
+            display         : inline-block;
+            padding         : 20px;
+            margin          : 0 0 20px 0;
+            background-color: rgba(158, 157, 161,.5);
+            text-decoration : none;
+            height          : 100%;
+        }
+        .router-link-active{
+            background-color: rgb(224, 126, 7);
+        }
+    }
+}

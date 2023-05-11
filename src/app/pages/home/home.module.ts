@@ -24,4 +24,6 @@ import { ArticlesComponent } from './articles/articles.component';
     SharedModule
   ]
 })
-export class HomeModule { }
+export class HomeModule {
+  constructor() {console.log("Home module:");}
+ }

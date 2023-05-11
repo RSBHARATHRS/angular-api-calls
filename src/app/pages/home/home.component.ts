@@ -14,7 +14,9 @@ export class HomeComponent implements OnInit {
   data: any;
 
   constructor(private apiService: ApiService,
-    private router: Router) { }
+    private router: Router) {
+      console.log("Home component:");
+     }
 
   ngOnInit(): void {
     // this.apiService.getData().subscribe((res) => {

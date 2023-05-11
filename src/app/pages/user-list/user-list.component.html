@@ -1,0 +1,14 @@
+<h1>User list</h1>
+
+<div *ngFor="let item of userList;let idx = index; let odd = odd; let even = even">
+    <div [ngClass]="odd ? 'odd' : 'even'">
+        index: {{idx}} {{odd}}
+        <img [src]="item?.avatar" alt="">
+        <p>user name : {{item?.first_name}}</p>
+        user {{item | json}}
+        <div [ngClass] = "{'border': odd, 'border-red' : even }">{{item?.first_name}}</div>
+    </div>
+</div>
+
+
+<span [ngStyle] = "{'background-color': 'blue'}"> ngStyle</span>

@@ -1,7 +1,12 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CreateUser } from '../models/response.model';
-import { Subject } from 'rxjs';
+
+interface Post {
+  createdAt: string,
+  id: string,
+  job: string,
+  name: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -9,26 +14,32 @@ import { Subject } from 'rxjs';
 
 export class ApiService {
 
-  subject = new Subject();
+  USER_LIST_URL = "https://reqres.in/api/users";
+  DOMAIN_URL = "https://reqres.in";
 
   constructor(private http: HttpClient) { }
 
-  getUserList() {
-    let params = new HttpParams().set("page", "2")
+  getData() {
+    let params = new HttpParams().set("page", "2");
+    // let header = new HttpHeaders().set()
     return this.http.get<any>("https://reqres.in/api/users", { params: params });
   }
 
-  getUserOfId(id: number) {
-    let url = "https://reqres.in/api/users" + id;
-    return this.http.get<any>(url);
-  }
-
   createUser() {
-    let url = "https://reqres.in/api/users";
-    let body = {
+    let payload = {
       "name": "morpheus",
       "job": "leader"
     }
-    return this.http.post<CreateUser>(url, body)
+    return this.http.post<Post>("https://reqres.in/a", payload);
   }
+
+  //API call to get users list
+  getUserList() {
+    let userListPath = "/api/users";
+    let url = this.DOMAIN_URL + userListPath;
+    let params = new HttpParams().set("page", "2");
+    return this.http.get<any>(url, { params: params });
+  }
+
+
 }

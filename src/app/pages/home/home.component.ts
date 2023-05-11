@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { CreateUser } from 'src/app/models/response.model';
+import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -12,50 +12,48 @@ import { ApiService } from 'src/app/services/api.service';
 export class HomeComponent implements OnInit {
 
   data: any;
-  sub$!: Subscription;
 
-  constructor(private apiService: ApiService) {
-
-   }
+  constructor(private apiService: ApiService,
+    private router: Router) { }
 
   ngOnInit(): void {
-
-    this.sub$ = this.apiService.subject.subscribe((res)=>{
-      console.log(res, "res")
-    })
-
-    this.apiService.getUserList().subscribe((res) => {
-      this.data = res;
-      console.log(res, "res");
-    })
-
-    // this.apiService.getUserOfId(2).subscribe((res) => {
-    //   console.log(res, "2")
+    // this.apiService.getData().subscribe((res) => {
+    //   console.log(res, "data");
+    //   this.data = res;
     // }, (err) => {
-    //   console.log(err, "2")
+    //   console.log(err, "error")
+    // });
+
+    // this.apiService.createUser().subscribe({
+    //   next: (res) => {
+    //     console.log(res, "data")
+    //   },
+    //   error: () => {
+    //     // alert("error");
+    //   },
+    //   complete: () => { }
     // })
-
-    this.apiService.getUserOfId(2).subscribe({
-      next: (res) => {
-        console.log(res, "res")
-      },
-      error: (err) => {
-        console.log(err, "err")
-      }
-    })
-
-    this.apiService.createUser().subscribe((res:CreateUser)=>{
-      console.log(res, "create")
-    })
   }
+
   trggerSub() {
-    this.apiService.subject.next("Hi")
+
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    this.sub$?.unsubscribe();
+    // this.obs$?.unsubscribe();
+  }
+
+  canExit() {
+    return true;
+  }
+
+  navigateToAdmin() {
+    if(localStorage.getItem("login")) {
+      this.router.navigateByUrl("/admin");
+    } else {
+      
+    }
+    
   }
 
 }

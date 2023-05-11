@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'user-list',
-    // canLoad: [AuthGuard],
+    canLoad: [AuthGuard],
     loadChildren: () => import('./pages/user-list/user-list.module').then(m => m.UserListModule)
   },
   {
@@ -40,9 +40,7 @@ const routes: Routes = [
   },
   {
     path: 'userForm',
-    // component: UserFormComponent,
     loadChildren: () => import('./pages/user-form/user-form.module').then(m => m.UserFormModule),
-
   }
 ];
 

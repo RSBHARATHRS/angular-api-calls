@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -12,7 +13,8 @@ export class HomeComponent implements OnInit {
 
   data: any;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,
+    private router: Router) { }
 
   ngOnInit(): void {
     // this.apiService.getData().subscribe((res) => {
@@ -43,6 +45,15 @@ export class HomeComponent implements OnInit {
 
   canExit() {
     return true;
+  }
+
+  navigateToAdmin() {
+    if(localStorage.getItem("login")) {
+      this.router.navigateByUrl("/admin");
+    } else {
+      
+    }
+    
   }
 
 }
